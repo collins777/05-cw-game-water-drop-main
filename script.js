@@ -40,6 +40,9 @@ if (!messageDiv) {
 // Wait for button click to start the game
 document.getElementById("start-btn").addEventListener("click", startGame);
 
+// Add event listener for reset button
+document.getElementById("reset-btn").addEventListener("click", resetGame);
+
 function startGame() {
   // Prevent multiple games from running at once
   if (gameRunning) return;
@@ -64,6 +67,25 @@ function startGame() {
 
   // Create new drops every second (1000 milliseconds)
   dropMaker = setInterval(createDrop, 1000);
+}
+
+function resetGame() {
+  // Stop intervals
+  clearInterval(dropMaker);
+  clearInterval(timer);
+  gameRunning = false;
+
+  // Remove all drops
+  const drops = document.querySelectorAll(".water-drop");
+  drops.forEach((drop) => drop.remove());
+
+  // Reset score and timer
+  document.getElementById("score").textContent = "0";
+  timeLeft = 30;
+  document.getElementById("time").textContent = timeLeft;
+
+  // Hide end message
+  messageDiv.style.display = "none";
 }
 
 function endGame() {
