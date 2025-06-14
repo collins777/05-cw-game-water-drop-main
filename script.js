@@ -104,6 +104,14 @@ function endGame() {
   let message;
   if (score >= 20) {
     message = winMessages[Math.floor(Math.random() * winMessages.length)];
+    // Confetti animation for win
+    if (window.confetti) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }
   } else {
     message = loseMessages[Math.floor(Math.random() * loseMessages.length)];
   }
