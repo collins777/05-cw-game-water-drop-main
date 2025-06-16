@@ -29,7 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #77a8bb; /* light blue */
   font-family: Arial, sans-serif;
 }
 
@@ -46,22 +46,25 @@ body {
   align-items: center;
   width: 800px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #ffc907; /* yellow */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: 2px solid #003366; /* deep blue border */
 }
 
-.timer {
+.timer,
+.score {
   flex: 0 1 auto;
   font-size: 24px;
   font-weight: bold;
+  color: #003366; /* deep blue text */
 }
 
 #game-container {
   width: 800px;
   height: 600px;
-  background-color: #e6f7ff;
-  border: 2px solid #333;
+  background-color: #fff;
+  border: 3px solid #003366;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -69,44 +72,43 @@ body {
 
 #start-btn {
   padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#start-btn:hover {
-  background-color: #45a049;
-}
-
-#reset-btn {
-  padding: 8px 16px;
-  background-color: #ffc907;
-  color: #222;
+  background-color: #003366;
+  color: #ffc907;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   margin-left: 10px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+#start-btn:hover {
+  background-color: #00509e;
+}
+
+#reset-btn {
+  padding: 8px 16px;
+  background-color: #ffc907;
+  color: #003366;
+  border: 2px solid #003366;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: background 0.2s;
 }
 
 #reset-btn:hover {
-  background-color: #ffd84d;
-}
-
-.score {
-  flex: 0 1 auto; /* Don't grow, can shrink, auto basis */
-  font-size: 24px;
-  font-weight: bold;
+  background-color: #ffe97a;
 }
 
 .water-drop {
   position: absolute;
   width: 60px; /* increased from 40px */
   height: 60px; /* increased from 40px */
-  background-color: #0099ff;
+  background-color: #2e9df7;
   border-radius: 50%;
   animation: dropFall linear forwards;
   transform-origin: center;
@@ -114,6 +116,8 @@ body {
   padding: 15px; /* Add padding for larger click area */
   margin: -15px; /* Offset padding to maintain visual size */
   transition: transform 0.1s ease; /* Smooth hover effect */
+  border: 2px solid #003366;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .water-drop:hover {
@@ -121,22 +125,26 @@ body {
 }
 
 .bad-drop {
-  background-color: #4fcb53; /* Green for bad drops */
+  background-color: #77a8bb; /* light blue for bad drops */
+  border: 2px solid #ffc907;
 }
 
 .game-title {
-  color: #131313;
+  color: #003366;
   font-size: 48px;
   margin-top: 0;
   margin-bottom: 5px; /* reduced from 20px */
   text-align: center;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 
 .game-tagline {
-  color: #666;
+  color: #003366;
   font-size: 18px;
   margin-bottom: 20px;
   text-align: center;
+  font-style: italic;
 }
 
 @keyframes dropFall {
