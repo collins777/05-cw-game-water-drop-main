@@ -26,6 +26,7 @@ Fonts:
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -108,7 +109,7 @@ body {
   position: absolute;
   width: 60px; /* increased from 40px */
   height: 60px; /* increased from 40px */
-  background-color: #2e9df7;
+  /* background-color: #2e9df7;  Remove for image drop */
   border-radius: 50%;
   animation: dropFall linear forwards;
   transform-origin: center;
@@ -118,10 +119,13 @@ body {
   transition: transform 0.1s ease; /* Smooth hover effect */
   border: 2px solid #003366;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: none;
 }
 
-.water-drop:hover {
-  transform: scale(1.1); /* Slight grow effect on hover */
+.water-drop:not(.bad-drop) {
+  border: none;
+  box-shadow: none;
+  background: none;
 }
 
 .bad-drop {
@@ -146,6 +150,59 @@ body {
   margin-bottom: 20px;
   text-align: center;
   font-style: italic;
+}
+
+.site-footer {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1rem;
+  padding: 24px 0 12px 0;
+  background: #ffc907; /* yellow */
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  flex-shrink: 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.site-footer a {
+  color: #1a73e8;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #0c47a1;
+  text-decoration: underline;
+}
+
+.difficulty-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.difficulty-btn {
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 2px solid #003366;
+  background: #fff;
+  color: #003366;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.difficulty-btn.active,
+.difficulty-btn:hover {
+  background: #ffc907;
+  color: #003366;
+  border-color: #ffc907;
 }
 
 @keyframes dropFall {

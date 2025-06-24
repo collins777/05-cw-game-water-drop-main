@@ -18,6 +18,35 @@ const loseMessages = [
   "Keep going! The world needs water heroes.",
 ];
 
+// Difficulty settings
+const difficultySettings = {
+  easy: { dropInterval: 1200, dropDuration: 5 },
+  normal: { dropInterval: 1000, dropDuration: 4 },
+  hard: { dropInterval: 700, dropDuration: 2.7 },
+};
+let currentDifficulty = "normal";
+
+// Difficulty button logic
+const difficultyBtns = document.querySelectorAll(".difficulty-btn");
+difficultyBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Set active class
+    difficultyBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    // Set difficulty
+    currentDifficulty = btn.getAttribute("data-mode");
+    // If game is running, reset to apply new speed
+    if (gameRunning) {
+      resetGame();
+      startGame();
+    }
+  });
+});
+// Set default active
+document
+  .querySelector('.difficulty-btn[data-mode="normal"]')
+  .classList.add("active");
+
 // Create or select a message display element
 let messageDiv = document.getElementById("end-message");
 if (!messageDiv) {
@@ -65,8 +94,11 @@ function startGame() {
     }
   }, 1000);
 
-  // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 1000);
+  // Create new drops at interval based on difficulty
+  dropMaker = setInterval(
+    createDrop,
+    difficultySettings[currentDifficulty].dropInterval
+  );
 }
 
 function resetGame() {
@@ -143,8 +175,23 @@ function createDrop() {
   const xPosition = Math.random() * (gameWidth - 60);
   drop.style.left = xPosition + "px";
 
-  // Make drops fall for 4 seconds
-  drop.style.animationDuration = "4s";
+  // Make drops fall for duration based on difficulty
+  drop.style.animationDuration = `${difficultySettings[currentDifficulty].dropDuration}s`;
+
+  // If it's a good drop, use the image
+  if (!isBadDrop) {
+    drop.style.background = "none";
+    drop.style.border = "none";
+    drop.style.boxShadow = "none";
+    const img = document.createElement("img");
+    img.src = "img/water-can-transparent.png";
+    img.alt = "Water Can";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.pointerEvents = "none"; // So the div gets the click
+    drop.appendChild(img);
+  }
 
   // Add the new drop to the game screen
   document.getElementById("game-container").appendChild(drop);

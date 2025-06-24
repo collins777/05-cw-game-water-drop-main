@@ -11,26 +11,38 @@
     />
   </head>
   <body>
-    <div class="game-wrapper">
-      <h1 class="game-title">Water Drop</h1>
-      <img
-        src="img/cw_logo-horizontal.png"
-        alt="charity: water logo"
-        class="cw-logo"
-        style="max-width: 320px; margin-bottom: 10px"
-      />
-      <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
-      <div class="score-panel">
-        <div class="score">Score: <span id="score">0</span></div>
-        <div class="timer">Time: <span id="time">30</span>s</div>
-        <button id="start-btn">Start Game</button>
-        <button id="reset-btn">Reset</button>
+    <main style="flex: 1">
+      <div class="game-wrapper">
+        <h1 class="game-title">Water Drop</h1>
+        <img
+          src="img/cw_logo-horizontal.png"
+          alt="charity: water logo"
+          class="cw-logo"
+          style="max-width: 320px; margin-bottom: 10px"
+        />
+        <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
+        <div class="difficulty-panel">
+          <span>Difficulty:</span>
+          <button class="difficulty-btn" data-mode="easy">Easy</button>
+          <button class="difficulty-btn" data-mode="normal">Normal</button>
+          <button class="difficulty-btn" data-mode="hard">Hard</button>
+        </div>
+        <div class="score-panel">
+          <div class="score">Score: <span id="score">0</span></div>
+          <div class="timer">Time: <span id="time">30</span>s</div>
+          <button id="start-btn">Start Game</button>
+          <button id="reset-btn">Reset</button>
+        </div>
+
+        <div id="game-container"></div>
       </div>
-
-      <div id="game-container"></div>
-    </div>
-
+    </main>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <footer class="site-footer">
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener">
+        Learn more at charity: water
+      </a>
+    </footer>
   </body>
 </html>
